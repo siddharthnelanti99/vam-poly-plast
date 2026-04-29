@@ -1,0 +1,25 @@
+type ContactSubmission = 
+ record {
+   email: text;
+   id: nat;
+   message: text;
+   name: text;
+   phone: text;
+   productInterest: text;
+   timestamp: int;
+ };
+service : {
+  getAllContactSubmissions: () -> (vec ContactSubmission) query;
+  getAllProductInquiryCounts: () -> (vec record {
+                                           text;
+                                           nat;
+                                         }) query;
+  getContactSubmission: (id: nat) -> (opt ContactSubmission) query;
+  getProductInquiryCount: (productCategory: text) -> (nat) query;
+  getSubmissionCount: () -> (nat) query;
+  submitContactForm: (name: text, email: text, phone: text, message: 
+   text, productInterest: text) -> (variant {
+                                      err: text;
+                                      ok: nat;
+                                    });
+}
